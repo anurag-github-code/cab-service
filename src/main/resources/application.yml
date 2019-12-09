@@ -1,0 +1,42 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /cab-service
+
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: cabservice
+
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/trip_db
+    username: postgres
+    password: password
+
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  jedis:
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
